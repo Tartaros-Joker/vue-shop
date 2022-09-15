@@ -13,7 +13,7 @@
           <el-input  v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
         </el-form-item>
         <el-form-item  prop="password">
-          <el-input   v-model="loginForm.password" prefix-icon="iconfont icon-3702mima"></el-input>
+          <el-input   v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password"></el-input>
         </el-form-item>
           <!-- 按钮区域 -->
           <div class="login_but">
@@ -29,8 +29,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: '',
+        password: ''
       },
       login_rules: {
         username: [
