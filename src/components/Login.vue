@@ -1,32 +1,33 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
- <div class="login_container">
-  <div class="login_box">
-    <!-- 图片 -->
-    <div class="login_img">
-      <img src="../assets/logo.png" alt="">
-    </div>
-    <div>
-      <!-- 输入区域 -->
-      <el-form class="login_ipt" :model="loginForm" :rules="login_rules" ref="loginFromRef">
-        <el-form-item prop="username">
-          <el-input  v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
-        </el-form-item>
-        <el-form-item  prop="password">
-          <el-input   v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password"></el-input>
-        </el-form-item>
+  <div class="login_container">
+    <div class="login_box">
+      <!-- 图片 -->
+      <div class="login_img">
+        <img src="../assets/logo.png" alt="" />
+      </div>
+      <div>
+        <!-- 输入区域 -->
+        <el-form class="login_ipt" :model="loginForm" :rules="login_rules" ref="loginFromRef">
+          <el-form-item prop="username">
+            <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password" @keyup.enter.native="login"></el-input>
+          </el-form-item>
           <!-- 按钮区域 -->
           <div class="login_but">
             <el-button type="primary" @click="login">登录</el-button>
-            <el-button type="info" @click="loginReset">重置</el-button></div>
+            <el-button type="info" @click="loginReset">重置</el-button>
+          </div>
         </el-form>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       loginForm: {
         username: '',
@@ -45,11 +46,11 @@ export default {
     }
   },
   methods: {
-    loginReset () {
+    loginReset() {
       console.log(this)
       this.$refs.loginFromRef.resetFields()
     },
-    login () {
+    login() {
       this.$refs.loginFromRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.post('/login', this.loginForm)
@@ -67,42 +68,43 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.login_container{
+.login_container {
   background-color: #2b4b6b;
-  height:100%;
+  height: 100%;
 }
-.login_box{
+.login_box {
   background-color: white;
-  width:450px;
+  width: 450px;
   height: 300px;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-.login_img{
+.login_img {
   width: 130px;
   height: 130px;
   border: 1px solid #eee;
   border-radius: 50%;
   padding: 10px;
   position: absolute;
-  left:50%;
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: #eee;
-  }
-  .login_ipt{
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: #eee;
+}
+.login_ipt {
   padding: 20px;
   position: absolute;
   width: 100%;
   box-sizing: border-box;
-  top: 80px;}
-.login_but{
+  top: 80px;
+}
+.login_but {
   padding-left: 260px;
 }
 </style>
