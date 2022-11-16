@@ -127,11 +127,11 @@ export default {
         return res.meta.msg
       }
       this.catelist = res.data
-      console.log(this.catelist)
+    
     },
     // 获取选中的节点
     handleChange() {
-      console.log(this.addForm.goods_cat)
+      // console.log(this.addForm.goods_cat)
       if (this.addForm.goods_cat.length !== 3) {
         this.addForm.goods_cat = []
       }
@@ -154,14 +154,14 @@ export default {
         res.data.forEach(item => {
           item.attr_vals = item.attr_vals.length === 0 ? [] : item.attr_vals.split(',')
         })
-        console.log(this.manyTables)
+        // console.log(this.manyTables)
       } else if (this.activeStep === '2') {
         const { data: res } = await this.$http.get(`categories/${this.addForm.goods_cat[2]}/attributes`, { params: { sel: 'only' } })
         if (res.meta.status !== 200) {
           return this.$message.error(res.meta.msg)
         }
         this.onlyTables = res.data
-        console.log(this.onlyTables)
+        // console.log(this.onlyTables)
       }
     },
     // 图片预览效果
@@ -181,7 +181,7 @@ export default {
     uploadSuccess(response) {
       const picobj = { pics: response.data.tmp_path }
       this.addForm.pics.push(picobj)
-      console.log(this.addForm.pics)
+      // console.log(this.addForm.pics)
     },
     // 添加商品校验
     addGoods() {

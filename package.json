@@ -42,5 +42,18 @@
   "parserOptions": {
     "parser": "@babel/eslint-parser",
     "requireConfigFile": false
-  }
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tartaros-Joker/vue-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tartaros-Joker/vue-shop/issues"
+  },
+  "homepage": "https://github.com/Tartaros-Joker/vue-shop#readme"
 }
