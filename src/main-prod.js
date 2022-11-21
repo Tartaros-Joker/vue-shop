@@ -19,6 +19,9 @@ axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+axios.interceptors.response.use(response => {
+  return response.data
+})
 
 Vue.config.productionTip = false
 Vue.use(QuillEditor).use(ElementUI)
