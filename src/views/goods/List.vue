@@ -62,7 +62,7 @@ export default {
   methods: {
     // 获取商品列表信息
     async getGoodslist() {
-      const { data: res } = await this.$http.get('goods', { params: this.queryinfo })
+      const res = await this.$http.get('goods', { params: this.queryinfo })
       if (res.meta.status !== 200) {
         return this.this.$message.error(res.meta.msg)
       }
@@ -88,7 +88,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          const { data: res } = await this.$http.delete(`goods/${id}`)
+          const res = await this.$http.delete(`goods/${id}`)
           if (res.meta.status !== 200) {
             return this.$message.error(res.meta.msg)
           }

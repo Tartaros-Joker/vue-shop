@@ -92,7 +92,7 @@ export default {
   methods: {
     // 获取数据列表
     async getCatelist() {
-      const { data: res } = await this.$http.get('categories', { params: this.queryInfo })
+      const res = await this.$http.get('categories', { params: this.queryInfo })
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -135,7 +135,7 @@ export default {
     addCatefrom() {
       this.$refs.addFromRef.validate(async vaild => {
         if (!vaild) return
-        const { data: res } = await this.$http.post('categories', this.addFrom)
+        const res = await this.$http.post('categories', this.addFrom)
         if (res.meta.status !== 201) {
           return this.$message.error(res.meta.msg)
         }

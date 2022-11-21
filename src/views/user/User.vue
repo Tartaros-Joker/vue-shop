@@ -182,7 +182,7 @@ export default {
   methods: {
     // 获取列表
     async getUserlist() {
-      const { data: res } = await this.$http.get('/users', { params: this.queryInfo })
+      const res = await this.$http.get('/users', { params: this.queryInfo })
       if (res.meta.status !== 200) {
         return this.$message.error('获取用户列表失败')
       }
@@ -203,7 +203,7 @@ export default {
     },
     // 用户状态更改
     async userStatechange(userState) {
-      const { data: res } = await this.$http.put(`users/${userState.id}/state/${userState.mg_state}`)
+      const res = await this.$http.put(`users/${userState.id}/state/${userState.mg_state}`)
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -217,7 +217,7 @@ export default {
     addUser() {
       this.$refs.RefaddForm.validate(async valid => {
         if (valid) {
-          const { data: res } = await this.$http.post('/users', this.addForm)
+          const res = await this.$http.post('/users', this.addForm)
           console.log(res)
           if (res.meta.status === 201) {
             this.$message.success(res.meta.msg)
@@ -236,7 +236,7 @@ export default {
     // 修改用户窗口
     async showEditdialog(id) {
       this.EditdialogVisible = true
-      const { data: res } = await this.$http.get('/users/' + id)
+      const res = await this.$http.get('/users/' + id)
       console.log(res)
       if (res.meta.status !== 200) {
         this.$message.error('请求用户信息失败')
@@ -252,7 +252,7 @@ export default {
       this.$refs.RefeditForm.validate(async valid => {
         if (valid) {
           console.log(valid)
-          const { data: res } = await this.$http.put('/users/' + this.editForm.id, {
+          const res = await this.$http.put('/users/' + this.editForm.id, {
             email: this.editForm.email,
             mobile: this.editForm.mobile
           })
@@ -276,7 +276,7 @@ export default {
       this.setForm = userinfo
       console.log(userinfo)
       // 获取所有角色列表
-      const { data: res } = await this.$http.get('roles')
+      const res = await this.$http.get('roles')
       if (res.meta.status !== 200) {
         return this.$message.error('获取列表失败')
       }
@@ -288,7 +288,7 @@ export default {
       if (!this.setrole) {
         return this.$message.error('请选择需要分配的角色！')
       }
-      const { data: res } = await this.$http.put(`users/${this.setForm.id}/role`, { rid: this.setrole })
+      const res = await this.$http.put(`users/${this.setForm.id}/role`, { rid: this.setrole })
       if (res.meta.status != 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -308,7 +308,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          const { data: res } = await this.$http.delete('users/' + id)
+          const res = await this.$http.delete('users/' + id)
           if (res.meta.status === 200) {
             console.log(res)
             this.$message({

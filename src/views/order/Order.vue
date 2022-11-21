@@ -97,7 +97,7 @@ export default {
   methods: {
     // 获取订单
     async getOrderlist() {
-      const { data: res } = await this.$http.get('orders', { params: this.queryinfo })
+      const res = await this.$http.get('orders', { params: this.queryinfo })
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -121,7 +121,7 @@ export default {
     },
     async showProgress() {
       this.progressVisible = true
-      const { data: res } = await this.$http.get('/kuaidi/1106975712662')
+      const res = await this.$http.get('/kuaidi/1106975712662')
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }

@@ -122,7 +122,7 @@ export default {
   methods: {
     // 获取级联选择器的列表
     async getCateList() {
-      const { data: res } = await this.$http.get('categories')
+      const res = await this.$http.get('categories')
       if (res.meta.status !== 200) {
         return res.meta.msg
       }
@@ -146,7 +146,7 @@ export default {
     // 获取商品参数或属性
     async tabClicked() {
       if (this.activeStep === '1') {
-        const { data: res } = await this.$http.get(`categories/${this.addForm.goods_cat[2]}/attributes`, { params: { sel: 'many' } })
+        const res = await this.$http.get(`categories/${this.addForm.goods_cat[2]}/attributes`, { params: { sel: 'many' } })
         if (res.meta.status !== 200) {
           return this.$message.error(res.meta.msg)
         }
@@ -156,7 +156,7 @@ export default {
         })
         // console.log(this.manyTables)
       } else if (this.activeStep === '2') {
-        const { data: res } = await this.$http.get(`categories/${this.addForm.goods_cat[2]}/attributes`, { params: { sel: 'only' } })
+        const res = await this.$http.get(`categories/${this.addForm.goods_cat[2]}/attributes`, { params: { sel: 'only' } })
         if (res.meta.status !== 200) {
           return this.$message.error(res.meta.msg)
         }
@@ -205,7 +205,7 @@ export default {
         })
         const From = _.cloneDeep(this.addForm)
         From.goods_cat = this.addForm.goods_cat.join(',')
-        const { data: res } = await this.$http.post('/goods', From)
+        const res = await this.$http.post('/goods', From)
         if (res.meta.status !== 201) {
           return this.$message.error(res.meta.msg)
         }

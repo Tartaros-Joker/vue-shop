@@ -7,7 +7,7 @@
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 表格内填充表格 -->
-    <el-card >
+    <el-card>
       <el-table border stripe :data="rightLists" style="width: 100%">
         <el-table-column type="index" label="#"> </el-table-column>
         <el-table-column prop="authName" label="权限名称" width="400"> </el-table-column>
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     async getrightLists() {
-      const { data: res } = await this.$http.get('rights/list')
+      const res = await this.$http.get('rights/list')
       // console.log(res)
       if (res.meta.status === 200) {
         this.rightLists = res.data

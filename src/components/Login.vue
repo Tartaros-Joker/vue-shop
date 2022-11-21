@@ -4,7 +4,7 @@
     <div class="login_box">
       <!-- 图片 -->
       <div class="login_img">
-        <img src="../assets/logo.png" alt="" />
+        <img src="../assets/1.jpg" alt="" />
       </div>
       <div>
         <!-- 输入区域 -->
@@ -53,7 +53,7 @@ export default {
     login() {
       this.$refs.loginFromRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('/login', this.loginForm)
+        const res = await this.$http.post('/login', this.loginForm)
         console.log(res)
         if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
         this.$message({
@@ -95,6 +95,7 @@ img {
   height: 100%;
   width: 100%;
   border-radius: 50%;
+
   background-color: #eee;
 }
 .login_ipt {

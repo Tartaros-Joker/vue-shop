@@ -3,13 +3,13 @@
   <el-container>
     <!-- 头部 -->
     <el-header>
-      <span>后台管理系统</span>
+      <span class="text">后台管理系统</span>
       <el-button type="danger" @click="logout">退出</el-button>
     </el-header>
     <el-container>
       <el-aside :width="isCollapse ? '65px' : '200px'">
         <!-- 侧边栏区域 -->
-        <div class="tooglebutton" @click="toogle">|||</div>
+        <div class="tooglebutton" @click="toggle">|||</div>
         <el-menu class="el-menu-vertical-demo" background-color="#333744" text-color="#fff" active-text-color="#409eff" :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="activePath">
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <template slot="title">
@@ -21,8 +21,8 @@
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span>{{ subitem.authName }}</span>
-              </template></el-menu-item
-            >
+              </template>
+            </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -58,18 +58,19 @@ export default {
       this.$router.push('/login')
     },
     async getData() {
-      const { data: res } = await this.$http.get('menus')
+      const res = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       // console.log(res)
       this.menulist = res.data
       // console.log(this.menulist)
     },
-    toogle() {
-      this.isCollapse = !this.isCollapse
-    },
     saveActive(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
+    },
+    toggle() {
+      this.isCollapse = !this.isCollapse
+      this.$store.commit('setCollapse', this.isCollapse)
     }
   }
 }
@@ -84,6 +85,9 @@ export default {
   color: #fff;
   font-size: 20px;
 }
+.text {
+  margin-left: 20px;
+}
 .el-aside {
   background-color: #333744;
 }
@@ -93,7 +97,6 @@ export default {
 }
 .el-container {
   height: 100%;
-  
 }
 .iconfont {
   padding-right: 10px;
@@ -109,5 +112,4 @@ export default {
   padding: 3px;
   letter-spacing: 0.2em;
 }
-
 </style>

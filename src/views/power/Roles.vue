@@ -76,10 +76,10 @@
       <el-dialog title="收货地址" :visible.sync="changedialogVisible">
         <el-form :model="changeFrom" :rules="addrules" ref="changeRolesRef">
           <el-form-item label="角色名称" prop="roleName">
-            <el-input v-model="changeFrom.roleName"></el-input>
+            <el-input v-model="changeFrom.roleDesc"></el-input>
           </el-form-item>
           <el-form-item label="角色描述">
-            <el-input v-model="changeFrom.roleDesc"></el-input>
+            <el-input v-model="changeFrom.roleName"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     async getrolesList() {
-      const { data: res } = await this.$http.get('roles')
+      const res = await this.$http.get('roles')
       // console.log(res)
       if (res.meta.status !== 200) {
         this.$message.error(res.meta.msg)
@@ -137,7 +137,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          const { data: res } = await this.$http.delete(`roles/${role.id}/rights/${rightId}`)
+          const res = await this.$http.delete(`roles/${role.id}/rights/${rightId}`)
           if (res.meta.status !== 200) {
             // console.log(res)
             this.$message({
@@ -164,7 +164,7 @@ export default {
     // 分配权限弹窗
     async showsetRightdialog(role) {
       this.roleid = role.id
-      const { data: res } = await this.$http.get('rights/tree')
+      const res = await this.$http.get('rights/tree')
       // console.log(res)
       if (res.meta.status !== 200) {
         this.$message.error('获取列表失败')
@@ -187,7 +187,7 @@ export default {
     async setRight() {
       const keys = [...this.$refs.treeRef.getCheckedKeys(), ...this.$refs.treeRef.getHalfCheckedKeys()]
       const idStr = keys.join(',')
-      const { data: res } = await this.$http.post(`roles/${this.roleid}/rights`, { rids: idStr })
+      const res = await this.$http.post(`roles/${this.roleid}/rights`, { rids: idStr })
       if (res.meta.status !== 200) {
         this.$message.error('配置失败')
       }
@@ -203,7 +203,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          const { data: res } = await this.$http.delete(`roles/${row}`)
+          const res = await this.$http.delete(`roles/${row}`)
           console.log(row)
           console.log(res)
           if (res.meta.status !== 200) {
@@ -232,7 +232,7 @@ export default {
         if (!vals) {
           this.$message.error('请输入必填项')
         }
-        const { data: res } = await this.$http.post('roles', this.addFrom)
+        const res = await this.$http.post('roles', this.addFrom)
         if (res.meta.status !== 201) {
           this.$message.error(res.meta.msg)
         }
@@ -243,7 +243,7 @@ export default {
     },
     async showChangedialog(id) {
       this.changedialogVisible = true
-      const { data: res } = await this.$http.get(`roles/${id}`)
+      const res = await this.$http.get(`roles/${id}`)
       if (res.meta.status !== 200) {
         this.$message.error(res.meta.msg)
       }
@@ -251,7 +251,7 @@ export default {
       this.changeFrom = res.data
     },
     async changeRoles() {
-      const { data: res } = await this.$http.put(`roles/${this.changeFrom.roleId}`, { roleName: this.changeFrom.roleName, roleDesc: this.changeFrom.roleDesc })
+      const res = await this.$http.put(`roles/${this.changeFrom.roleId}`, { roleName: this.changeFrom.roleName, roleDesc: this.changeFrom.roleDesc })
       if (res.meta.status !== 200) {
         this.$message.error(res.meta.msg)
       }

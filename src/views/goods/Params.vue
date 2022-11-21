@@ -125,7 +125,7 @@ export default {
   methods: {
     // 获取商品列表
     async getCateList() {
-      const { data: res } = await this.$http.get('categories')
+      const res = await this.$http.get('categories')
       if (res.meta.status !== 200) {
         return res.meta.msg
       }
@@ -140,7 +140,7 @@ export default {
         this.onlyTabledata = []
         return
       }
-      const { data: res } = await this.$http.get(`categories/${this.selectedCateKey[2]}/attributes`, { params: { sel: this.activeName } })
+      const res = await this.$http.get(`categories/${this.selectedCateKey[2]}/attributes`, { params: { sel: this.activeName } })
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -179,7 +179,7 @@ export default {
     AddForm() {
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post(`categories/${this.selectedCateKey[2]}/attributes`, {
+        const res = await this.$http.post(`categories/${this.selectedCateKey[2]}/attributes`, {
           attr_name: this.addForm.attr_name,
           attr_sel: this.activeName
         })
@@ -196,7 +196,7 @@ export default {
       this.editDialogVisible = true
       this.editForm.attr_id = row.attr_id
       this.editForm.attr_name = row.attr_name
-      // const { data: res } = await this.$http.get(`categories/${this.selectedCateKey[2]}/attributes/${id}`, {
+      // const res = await this.$http.get(`categories/${this.selectedCateKey[2]}/attributes/${id}`, {
       //   params: {
       //     attr_sel: this.activeName
       //   }
@@ -216,7 +216,7 @@ export default {
     EditForm() {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.put(`categories/${this.selectedCateKey[2]}/attributes/${this.editForm.attr_id}`, {
+        const res = await this.$http.put(`categories/${this.selectedCateKey[2]}/attributes/${this.editForm.attr_id}`, {
           attr_name: this.editForm.attr_name,
           attr_sel: this.activeName
         })
@@ -230,7 +230,7 @@ export default {
     },
     // 删除项
     async deleteFrom() {
-      const { data: res } = await this.$http.delete(`categories/${this.selectedCateKey[2]}/attributes/${this.deleteId}`)
+      const res = await this.$http.delete(`categories/${this.selectedCateKey[2]}/attributes/${this.deleteId}`)
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
@@ -239,7 +239,7 @@ export default {
       this.deleteDialogVisible = false
     },
     async saveVals(row) {
-      const { data: res } = await this.$http.put(`categories/${this.selectedCateKey[2]}/attributes/${row.attr_id}`, { attr_name: row.attr_name, attr_sel: this.activeName, attr_vals: row.attr_vals.join(',') })
+      const res = await this.$http.put(`categories/${this.selectedCateKey[2]}/attributes/${row.attr_id}`, { attr_name: row.attr_name, attr_sel: this.activeName, attr_vals: row.attr_vals.join(',') })
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg)
       }
