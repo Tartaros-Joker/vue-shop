@@ -14,7 +14,6 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: resolve => require(['../views/Welcome'], resolve) },
-
       { path: '/home/users', component: resolve => require(['../views/user/User'], resolve) },
       { path: '/home/rights', component: resolve => require(['../views/power/Rights'], resolve) },
       { path: '/home/roles', component: resolve => require(['../views/power/Roles'], resolve) },

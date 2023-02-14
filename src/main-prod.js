@@ -9,9 +9,9 @@ import axios from 'axios'
 import store from './store'
 import TreeTable from 'vue-table-with-tree-grid'
 import QuillEditor from 'vue-quill-editor'
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
 Vue.prototype.$http = axios
